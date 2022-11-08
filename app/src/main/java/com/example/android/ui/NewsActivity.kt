@@ -26,5 +26,11 @@ class NewsActivity : AppCompatActivity() {
         //Get the titles from the fragments in the menu and update the toolbar with the name when the fragment is changed
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.breakingNewsFragment, R.id.savedNewsFragment, R.id.searchNewsFragment))
         setupActionBarWithNavController(supportFragmentManager.findFragmentById(R.id.newsNavHostFragment)!!.findNavController(), appBarConfiguration)
+
+        //Add badge number to bottomnav icon
+        binding.bottomNavigationView.getOrCreateBadge(R.id.savedNewsFragment).apply{
+            number = 10
+            isVisible = true
+        }
     }
 }
