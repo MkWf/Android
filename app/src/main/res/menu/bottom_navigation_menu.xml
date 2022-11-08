@@ -3,7 +3,7 @@
 
     <item android:id="@+id/breakingNewsFragment"
         android:title="Breaking News"
-        android:icon="@drawable/ic_breaking_news" />
+        android:icon="@drawable/bottom_nav_firsticon_changer" />
 
     <item android:id="@+id/savedNewsFragment"
         android:title="Saved News"
