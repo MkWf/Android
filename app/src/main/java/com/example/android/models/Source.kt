@@ -1,4 +1,4 @@
-package com.example.android
+package com.example.android.models
 
 //Ctrl+Alt+S for plugins
 //JSON to Kotlin

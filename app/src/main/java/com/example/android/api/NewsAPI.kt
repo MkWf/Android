@@ -1,6 +1,6 @@
 package com.example.android.api
 
-import com.example.android.NewsResponse
+import com.example.android.models.NewsResponse
 import com.example.android.util.Constants.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
