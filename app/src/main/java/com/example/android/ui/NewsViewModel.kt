@@ -16,6 +16,10 @@ class NewsViewModel(
     val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1 //keep track of the page in the viewmodel since data isnt lost during configuration changes
 
+    init {
+        getBreakingNews("us") //call it automatically on creation
+    }
+
     //Use coroutine scope from viewmodel to make the call. Suspend function is in the repository
     fun getBreakingNews(countryCode: String) = viewModelScope.launch {
         breakingNews.postValue(Resource.Loading()) //post to observers that were loading

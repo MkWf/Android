@@ -18,11 +18,12 @@ class NewsActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //display the fragment in the framelayout
+        supportFragmentManager.beginTransaction().replace(R.id.fl_fragment_container, BreakingNewsFragment()).commit()
+
         val newsRepository = NewsRepository(ArticleDatabase(this))
         val viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
-
-        supportFragmentManager.beginTransaction().replace(R.id.fl_fragment_container, BreakingNewsFragment()).commit()
 
         //init adapter then pass it to the recyclerview
         //binding.recyclerview.adapter = NewsAdapter()

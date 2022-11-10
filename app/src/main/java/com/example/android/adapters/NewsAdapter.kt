@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.android.databinding.ItemArticlePreviewBinding
 import com.example.android.models.Article
+import com.example.android.models.Source
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
+class NewsAdapter() : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     //Use diffutil for adapter updates instead of notifydatasetchanged. Will see the difference between
     //the two lists and only update the difference.
