@@ -22,6 +22,8 @@ class NewsActivity : AppCompatActivity() {
         val viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
 
+        supportFragmentManager.beginTransaction().replace(R.id.fl_fragment_container, BreakingNewsFragment()).commit()
+
         //init adapter then pass it to the recyclerview
         //binding.recyclerview.adapter = NewsAdapter()
     }
