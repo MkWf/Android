@@ -32,5 +32,9 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             webViewClient = WebViewClient()
             loadUrl(article.url) //display the article in the webview instead of phone browser
         }
+
+        binding.fab.setOnClickListener {
+            viewModel.saveArticle(article)
+        }
     }
 }
