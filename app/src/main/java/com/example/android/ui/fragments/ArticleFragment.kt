@@ -27,10 +27,12 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsActivity).viewModel
 
+        =====================
         val article = args.article  //get current article passed to us
         binding.webView.apply {
             webViewClient = WebViewClient()
             loadUrl(article.url) //display the article in the webview instead of phone browser
         }
+        ======================
     }
 }
