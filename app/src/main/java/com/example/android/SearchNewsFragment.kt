@@ -6,12 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.adapters.NewsAdapter
 import com.example.android.databinding.FragmentSearchNewsBinding
 import com.example.android.ui.NewsViewModel
 import com.example.android.util.Resource
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SearchNewsFragment : Fragment(R.layout.fragment_search_news){
     lateinit var viewModel: NewsViewModel
@@ -28,6 +33,20 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news){
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsActivity).viewModel   //get access to the viewmodel through the activity
         setupRecyclerView()
+
+        //Execute delayed search while typing with coroutines
+        var job: Job? = null
+        binding.etSearch.addTextChangedListener { editable ->
+            job?.cancel() //any time we start typing, cancel the job and start a new job
+            job = MainScope().launch {
+                delay(500L) //delay the search for 500ms between keystrokes
+                editable?.let { //if editable not null
+                    if(editable.toString().isNotEmpty()){ //and not empty
+                        viewModel.searchNews(editable.toString()) //search
+                    }
+                }
+            }
+        }
 
         //Observe the responses
         viewModel.searchNews.observe(viewLifecycleOwner, Observer { response ->

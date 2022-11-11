@@ -20,7 +20,8 @@ class NewsViewModel(
     var searchNewsPage = 1 //keep track of the page in the viewmodel since data isnt lost during configuration changes
 
     init {
-        getBreakingNews("us") //call it automatically on creation
+        //getBreakingNews("us") //call it automatically on creation
+        //****commented out when SearchNewsFragment attached
     }
 
     //Use coroutine scope from viewmodel to make the call. Suspend function is in the repository

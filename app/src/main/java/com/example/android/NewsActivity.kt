@@ -19,7 +19,7 @@ class NewsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //display the fragment in the framelayout
-        supportFragmentManager.beginTransaction().replace(R.id.fl_fragment_container, BreakingNewsFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fl_fragment_container, SearchNewsFragment()).commit()
 
         val newsRepository = NewsRepository(ArticleDatabase(this))
         val viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository)
