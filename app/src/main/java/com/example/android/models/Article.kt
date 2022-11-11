@@ -19,4 +19,5 @@ data class Article( //table
     val title: String,
     val url: String,
     val urlToImage: String
-)
+) : java.io.Serializable //safeargs plugin to pass between fragments
+

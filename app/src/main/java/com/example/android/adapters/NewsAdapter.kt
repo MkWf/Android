@@ -57,6 +57,7 @@ class NewsAdapter() : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     }
 
     //A listener that takes an Article as a param and returns nothing, and nullable. Set to null by default
+    //Will hold onto the listener that gets called in the fragment
     private var onItemClickListener: ((Article) -> Unit)? = null
 
     //Pass a listener that takes an Article as a parameter and returns nothing....above

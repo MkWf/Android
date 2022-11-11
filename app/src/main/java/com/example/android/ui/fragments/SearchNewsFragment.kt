@@ -1,4 +1,4 @@
-package com.example.android
+package com.example.android.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android.NewsActivity
+import com.example.android.R
 import com.example.android.adapters.NewsAdapter
 import com.example.android.databinding.FragmentSearchNewsBinding
 import com.example.android.ui.NewsViewModel
