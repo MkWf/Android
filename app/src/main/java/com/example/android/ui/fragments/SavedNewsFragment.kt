@@ -32,6 +32,34 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
 
+        //Swipe to delete. Anonymous class
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN, //the direction we scroll the recyclerview
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) //the direction we want to swipe the items
+        {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return true //not using this
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition //get position of swiped item
+                val article = newsAdapter.differ.currentList[position] //get the article from that item
+                viewModel.deleteArticle(article) //delete the article so that it's removed from the database and LiveData updates teh list being observed by the recyclerview
+                //If you want to undo the deletion
+                Snackbar.make(view, "Successfully deleted article", Snackbar.LENGTH_LONG).apply {
+                    setAction("Undo"){
+                        viewModel.saveArticle(article) //re-add the article
+                    }
+                    show()
+                }
+            }
+
+        }
+
+        ItemTouchHelper(itemTouchHelperCallback).apply{
+            attachToRecyclerView(binding.rvSavedNews) //attach itemtouchhelper to recyclerview
+        }
+
         //Begin observing the data for the saved news for display
         viewModel.getSavedNews().observe(viewLifecycleOwner, Observer { articles ->
             newsAdapter.differ.submitList(articles)
