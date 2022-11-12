@@ -11,14 +11,18 @@ import com.example.android.models.Article
 @Dao
 interface ArticleDAO { //Defines the functions to interact with the database
 
-    //Insert/update with @Insert
-    @Insert(onConflict = OnConflictStrategy.REPLACE) //If duplicate article is found, replace it
-    suspend fun upsert(article: Article): Long //returns a Long which is the id
+    //Queries cant use coroutine suspend functions
 
-    @Query("SELECT * FROM articles") //tablename in Article class
-    fun getAllArticles(): LiveData<List<Article>>    //not suspend fun. will return a LiveData which doesn't work with suspend functions
+    //GET ALL ARTICLES
+    @Query("SELECT * FROM articles")
 
-    @Delete
-    suspend fun deleteArticle(article: Article)  //delete an article
+    //GET ALL ARTICLES AND ORDER BY A COLUMN AND SORT
+    @Query("SELECT * FROM articles ORDER BY author DESC")
+    @Query("SELECT * FROM articles ORDER BY author ASC")
 
+    //ADD TOTAL VALUES IN A COLUMN
+    @Query("SELECT SUM(author) FROM articles")
+
+    //GET AVG VALUE OF A COLUMN
+    @Query("SELECT AVG(author) FROM articles")
 }
