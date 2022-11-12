@@ -30,7 +30,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         val article = args.article  //get current article passed to us
         binding.webView.apply {
             webViewClient = WebViewClient()
-            loadUrl(article.url) //display the article in the webview instead of phone browser
+            if(article.url != null){ loadUrl(article.url)} //display the article in the webview instead of phone browser
         }
 
         binding.fab.setOnClickListener {
