@@ -2,6 +2,7 @@ package com.example.android.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -26,6 +27,15 @@ class NewsActivity : AppCompatActivity() {
         //Get the titles from the fragments in the menu and update the toolbar with the name when the fragment is changed
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.breakingNewsFragment, R.id.savedNewsFragment, R.id.searchNewsFragment))
         setupActionBarWithNavController(supportFragmentManager.findFragmentById(R.id.newsNavHostFragment)!!.findNavController(), appBarConfiguration)
+
+        //Do something when its a specific destination. THis example, hide the bottomnav
+        val navHostFragment = supportFragmentManager.findFragmentById((R.id.newsNavHostFragment))
+        navHostFragment!!.findNavController()
+            .addOnDestinationChangedListener{_, destination, _ ->
+                when(destination.id) {
+                    R.id.savedNewsFragment, R.id.breakingNewsFragment -> binding.bottomNavigationView.visibility = View.VISIBLE
+                }
+            }
 
         //Add badge number to bottomnav icon
         binding.bottomNavigationView.getOrCreateBadge(R.id.savedNewsFragment).apply{
