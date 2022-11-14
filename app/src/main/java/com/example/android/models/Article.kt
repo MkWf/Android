@@ -11,7 +11,7 @@ data class Article( //table
     @PrimaryKey(autoGenerate = true) //will autoincrement each id for us
     var id: Int? = null, //primary key, unique for each article. Set null because not every article we fetch from retrofit will be saved in the database
 
-    var author: String,  //each parameter is a table column
+    val author: String,  //each parameter is a table column
     val content: String,
     val description: String,
     val publishedAt: String,
