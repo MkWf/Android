@@ -21,6 +21,7 @@ class NewsAdapter() : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem == newItem  //check if the same object
+            //return oldItem.hashCode() == newItem.hashCode() //was in MMVM run
         }
     }
 
