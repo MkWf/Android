@@ -20,5 +20,9 @@ class NewsActivity : AppCompatActivity() {
 
         //Get the fragment from the activity layout
         binding.bottomNavigationView.setupWithNavController(supportFragmentManager.findFragmentById(R.id.newsNavHostFragment)!!.findNavController())
+
+        //Navigate programmatically to a different fragment 
+        val navController = supportFragmentManager.findFragmentById(R.id.newsNavHostFragment)!!.findNavController()
+        navController.navigate(R.id.newsNavHostFragment)
     }
 }
