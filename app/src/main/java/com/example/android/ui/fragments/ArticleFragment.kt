@@ -39,5 +39,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             }
             viewModel.saveArticle(article)
         }
+
+        //recyclerView-swipeToDelete has the delete, just viewModel.deleteArticle(article)
     }
 }
