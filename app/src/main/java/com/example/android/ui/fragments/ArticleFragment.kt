@@ -32,5 +32,12 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             webViewClient = WebViewClient()
             loadUrl(article.url) //display the article in the webview instead of phone browser
         }
+
+        binding.fab.setOnClickListener {
+            if(article.author == null){ //added null check for author because alot of articles have null authors and causes NON NULL CONSTRAINT crash. but saving and seeing the articles in saved fragments works
+                article.author = "123"
+            }
+            viewModel.saveArticle(article)
+        }
     }
 }
